@@ -89,6 +89,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+dynamodb/
 
 # Spyder project settings
 .spyderproject

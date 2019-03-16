@@ -8,7 +8,7 @@ def list_all():
     return results
 
 def list_filter():
-    results = Notification.scan(Notification.exec_status == 'Success')
+    results = Notification.scan(Notification.exec_status == 'Success' & Notification.created_at > 1)
     results = [item.attribute_values for item in results]
     return results
 
@@ -36,3 +36,6 @@ def list_filter_limit(limit, last_evaluated_key=None):
         'results': results,
         'last_evaluated_key': _last_evaluated_key
     }
+
+def get_unread_count():
+    Notification.count(Notification.status == 'UNREAD')

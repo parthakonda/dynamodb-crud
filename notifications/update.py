@@ -39,3 +39,8 @@ def delete_notification(message_id):
     except DoesNotExist:
         raise ValueError
 
+
+def archive_notifications():
+    notifications = Notification.scan(Notification.status == 'READ')
+    for item in notifications:
+        item.update(actions=[Notification.status.set('UNREAD')])
